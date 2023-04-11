@@ -26,6 +26,7 @@ api.interceptors.request.use(
      * 全局拦截请求发送前提交的参数
      * 以下代码为示例，在请求头里带上 token 信息
      */
+    config.headers.Authorization = `Bearer ${import.meta.env.VITE_APP_OPENAPI_KEY}`
     if (tokenStore.isLogin && config.headers) {
       config.headers.Token = tokenStore.token
     }
@@ -47,17 +48,13 @@ api.interceptors.response.use(
      * 规则是当 status 为 1 时表示请求成功，为 0 时表示接口需要登录或者登录状态失效，需要重新登录
      * 请求出错时 error 会返回错误信息
      */
-    if (response.data.status === 1) {
-      if (response.data.error !== '') {
-        // 这里做错误提示，如果使用了 element plus 则可以使用 Message 进行提示
-        // Message.error(options)
-        return Promise.reject(response.data)
-      }
+    const { status } = response
+    if (status === 200) {
+      return Promise.resolve(response)
     }
     else {
       toLogin()
     }
-    return Promise.resolve(response.data)
   },
   (error) => {
     let message = error.message

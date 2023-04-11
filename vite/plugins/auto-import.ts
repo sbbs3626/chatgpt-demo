@@ -6,6 +6,16 @@ export default function createAutoImport() {
       'vue',
       'vue-router',
       'pinia',
+      // '@vueuse/core',
+      {
+        '@vueuse/core': [
+          // named imports
+          'useMouse', // import { useMouse } from '@vueuse/core',
+          'useStorage',
+          // alias
+          ['useFetch', 'useMyFetch'], // import { useFetch as useMyFetch } from '@vueuse/core',
+        ],
+      },
     ],
     dts: './src/types/auto-imports.d.ts',
     dirs: [

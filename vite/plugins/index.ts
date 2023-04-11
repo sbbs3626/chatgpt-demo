@@ -13,6 +13,7 @@ import createPages from './pages'
 import createCompression from './compression'
 import createSpritesmith from './spritesmith'
 import createBanner from './banner'
+import createUnoCSS from './unocss'
 
 export default function createVitePlugins(viteEnv, isBuild = false) {
   const vitePlugins: (PluginOption | PluginOption[])[] = [
@@ -30,5 +31,6 @@ export default function createVitePlugins(viteEnv, isBuild = false) {
   isBuild && vitePlugins.push(...createCompression(viteEnv))
   vitePlugins.push(...createSpritesmith(isBuild))
   vitePlugins.push(createBanner())
+  vitePlugins.push(createUnoCSS())
   return vitePlugins
 }

@@ -1,1 +1,27 @@
 // 全局样式
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--g-app-bg);
+  transition: background-color 0.3s;
+  box-sizing: border-box;
+  font-family: Lato, "PingFang SC", "Microsoft YaHei", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+
+  &.hidden {
+    overflow: hidden;
+  }
+}
+
+* {
+  box-sizing: inherit;
+}
